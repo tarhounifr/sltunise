@@ -1,0 +1,12 @@
+.spinner {
+  bottom: 50px;
+  background-color: white;
+  width: 100%;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.visually-hidden {
+  font-size: 300%;
+}

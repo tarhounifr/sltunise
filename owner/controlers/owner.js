@@ -75,3 +75,11 @@ exports.signin = async (req, res) => {
     res.status(400).send({ errors: [{ msg: "can not get the currentOwner" }] });
   }
 };
+exports.getAll = async (req, res) => {
+  try {
+    const listOwners = await Owner.find();
+    res.status(200).send({ msg: "this is all contact...", listOwners });
+  } catch (error) {
+    res.status(400).send({ msg: "error get all contacts", error });
+  }
+};

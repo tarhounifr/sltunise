@@ -1,8 +1,8 @@
 // express
 const express = require("express");
 const router = express.Router();
-const { signup, signin } = require("../owner/controlers/owner");
 
+const { signup, signin, getAll } = require("../owner/controlers/owner");
 const isAuthOwner = require("../owner/middlewares/auth_jwtter");
 
 const {
@@ -10,6 +10,7 @@ const {
   validation,
   signinValidation,
 } = require("../user/middlewares/user");
+
 //signup
 router.post("/signup", registerValidation(), validation, signup);
 
@@ -19,6 +20,6 @@ router.post("/signin", signinValidation(), validation, signin);
 router.get("/current", isAuthOwner, (req, res) => {
   res.send(req.owner);
 });
-
+router.get("/", getAll);
 // export
 module.exports = router;

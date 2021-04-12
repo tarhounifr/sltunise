@@ -1,5 +1,6 @@
 import axios from "axios";
 import {
+  CURRENT_OWNER,
   FAIL_OWNER,
   LOAD_OWNER,
   LOGOUT,
@@ -28,6 +29,23 @@ export const signinOwner = (owner, history) => async (dispatch) => {
 
     dispatch({ type: SIGNIN_OWNER, payload: result.data }); //msg , token , user
     history.push("/Complexe");
+  } catch (error) {
+    dispatch({ type: FAIL_OWNER, payload: error.response.data.errors });
+  }
+};
+
+export const currentOwner = () => async (dispatch) => {
+  dispatch({ type: LOAD_OWNER });
+
+  try {
+    const config = {
+      headers: {
+        authorization: localStorage.getItem("token"),
+      },
+    };
+    const result = await axios.get("/api/owner/current", config);
+
+    dispatch({ type: CURRENT_OWNER, payload: result.data }); //msg , token , user
   } catch (error) {
     dispatch({ type: FAIL_OWNER, payload: error.response.data.errors });
   }

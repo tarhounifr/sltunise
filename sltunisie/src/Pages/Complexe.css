@@ -1,0 +1,10 @@
+.profile-header {
+  transform: translateY(5rem);
+}
+
+.sectionComplexe {
+  background: #fb7813;
+  background: -webkit-linear-gradient(to right, #fb7813, #f5aa71);
+  background: linear-gradient(to right, #fb7813, #f5aa71);
+  min-height: 100vh;
+}

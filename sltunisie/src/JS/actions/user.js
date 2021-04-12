@@ -6,7 +6,6 @@ import {
   LOGOUT,
   SIGNIN_USER,
   SIGNUP_USER,
-  GET_OWNER,
 } from "../actionType/user";
 
 export const signup = (newUser, history) => async (dispatch) => {
@@ -29,7 +28,7 @@ export const signin = (user, history) => async (dispatch) => {
     const result = await axios.post("/api/user/signin", user);
 
     dispatch({ type: SIGNIN_USER, payload: result.data }); //msg , token , user
-    history.push("/Profil");
+    history.push("/AllComplexe");
   } catch (error) {
     dispatch({ type: FAIL_USER, payload: error.response.data.errors });
   }
@@ -40,7 +39,7 @@ export const currentUser = () => async (dispatch) => {
   try {
     const config = {
       headers: {
-        authorization: localStorage.getItem("token"),
+        Authorization: localStorage.getItem("token"),
       },
     };
     const result = await axios.get("/api/user/current", config);

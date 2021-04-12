@@ -1,4 +1,5 @@
 import {
+  CURRENT_OWNER,
   FAIL_OWNER,
   LOAD_OWNER,
   LOGOUT,
@@ -37,6 +38,14 @@ const ownerReducer = (state = initialState, { type, payload }) => {
 
     case FAIL_OWNER:
       return { ...state, loadOwner: false, errors: payload };
+    case CURRENT_OWNER:
+      return {
+        ...state,
+        loadOwner: false,
+        owner: payload,
+        isAuthOwner: true,
+        errors: [],
+      };
     case LOGOUT:
       localStorage.removeItem("token");
       return {

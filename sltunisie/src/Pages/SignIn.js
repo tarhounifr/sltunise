@@ -33,7 +33,7 @@ const SignIn = ({ history }) => {
                   <label
                     htmlFor="tab-1"
                     className="tab"
-                    style={{ "margin-top": "50px" }}
+                    style={{ marginTop: "50px" }}
                   >
                     Joueur
                   </label>

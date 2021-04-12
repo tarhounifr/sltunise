@@ -32,6 +32,7 @@ const getAlls = async (req, res) => {
   try {
     const owner = req.params;
     const listTerrains = await Terrain.find({ owner: owner.id });
+    console.log(listTerrains);
     res.status(200).send({ msg: "this is all contact...", listTerrains });
   } catch (error) {
     res.status(400).send({ msg: "error get all contacts", error });

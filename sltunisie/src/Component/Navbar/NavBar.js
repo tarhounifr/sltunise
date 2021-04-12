@@ -1,16 +1,16 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { Link } from "react-router-dom";
-import { logout } from "../JS/actions/user";
-import { logoutOwner } from "../JS/actions/owner";
+
+import { logoutOwner } from "../../JS/actions/owner";
+import { logout } from "../../JS/actions/user";
 
 import "./Navbar.css";
 
 const NavBar = () => {
   const dispatch = useDispatch();
-  const isAuth = useSelector((state) => state.userReducer.isAuth);
   const isAuthOwner = useSelector((state) => state.ownerReducer.isAuthOwner);
+  const isAuth = useSelector((state) => state.userReducer.isAuth);
   return (
     <header>
       <nav className="navbar navbar-expand-xl">
@@ -44,26 +44,37 @@ const NavBar = () => {
                 <span>Equipe</span>
               </Link>
             </li>
-            {/*
             <li>
-              <a href="#">
+              <Link to="AllComplexe">
                 <i className="fa fa-users" />
-                <span>Team</span>
-              </a>
-            </li>
-            */}
-            <li>
-              <Link to="/Contactez-nous">
-                <i className="fa fa-envelope" />
-                <span>Contactez-nous</span>
+                <span>Complexe Terrain</span>
               </Link>
             </li>
-            {isAuth || isAuthOwner ? (
+
+            <li>
+              <Link to="/Complexe">
+                <i className="fa fa-user" />
+                <span>Complexe</span>
+              </Link>
+            </li>
+            {isAuthOwner ? (
               <li>
                 <Link
                   to="/"
                   onClick={() => {
-                    isAuthOwner ? dispatch(logoutOwner()) : dispatch(logout());
+                    dispatch(logoutOwner());
+                  }}
+                >
+                  <i className="fa fa-power-off" />
+                  <span>Deconnecter</span>
+                </Link>
+              </li>
+            ) : isAuth ? (
+              <li>
+                <Link
+                  to="/"
+                  onClick={() => {
+                    dispatch(logout());
                   }}
                 >
                   <i className="fa fa-power-off" />

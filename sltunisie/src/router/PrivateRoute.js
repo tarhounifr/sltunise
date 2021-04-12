@@ -6,7 +6,7 @@ const PrivateRoute = ({ component: Component, ...props }) => {
   if (token) {
     return <Route component={Component} {...props} />;
   }
-  return <Redirect to="/signin" />;
+  return <Redirect to="/signup" />;
 };
 
 export default PrivateRoute;
